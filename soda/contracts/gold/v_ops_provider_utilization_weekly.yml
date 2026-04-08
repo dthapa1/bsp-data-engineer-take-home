@@ -1,0 +1,31 @@
+dataset: pawsfirst/gold/v_ops_provider_utilization_weekly
+
+columns:
+  - name: provider_clinic_id
+    data_type: varchar
+    checks:
+      - missing:
+          name: provider_clinic_id is always populated
+
+  - name: appointment_week_start_date
+    data_type: date
+    checks:
+      - missing:
+          name: appointment_week_start_date is always populated
+
+  - name: appointments_count
+    data_type: bigint
+    checks:
+      - missing:
+          name: appointments_count is always populated
+
+checks:
+  - schema:
+      name: Schema matches expected structure
+      allow_extra_columns: true
+      allow_other_column_order: true
+
+  - row_count:
+      name: At least 1000 weekly provider utilization rows
+      threshold:
+        must_be_greater_than: 1000

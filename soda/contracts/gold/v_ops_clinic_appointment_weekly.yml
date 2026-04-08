@@ -1,0 +1,31 @@
+dataset: pawsfirst/gold/v_ops_clinic_appointment_weekly
+
+columns:
+  - name: clinic_id
+    data_type: integer
+    checks:
+      - missing:
+          name: clinic_id is always populated
+
+  - name: appointment_week_start_date
+    data_type: date
+    checks:
+      - missing:
+          name: appointment_week_start_date is always populated
+
+  - name: total_appointments
+    data_type: bigint
+    checks:
+      - missing:
+          name: total_appointments is always populated
+
+checks:
+  - schema:
+      name: Schema matches expected structure
+      allow_extra_columns: true
+      allow_other_column_order: true
+
+  - row_count:
+      name: At least 500 weekly clinic rows
+      threshold:
+        must_be_greater_than: 500

@@ -1,0 +1,31 @@
+dataset: pawsfirst/gold/dim_clin_patient
+
+columns:
+  - name: patient_id
+    data_type: integer
+    checks:
+      - missing:
+          name: patient_id is always populated
+
+  - name: clinic_id
+    data_type: integer
+    checks:
+      - missing:
+          name: clinic_id is always populated
+
+  - name: is_current
+    data_type: boolean
+    checks:
+      - missing:
+          name: is_current is always populated
+
+checks:
+  - schema:
+      name: Schema matches expected structure
+      allow_extra_columns: true
+      allow_other_column_order: true
+
+  - row_count:
+      name: At least 1900 gold patient dimension rows
+      threshold:
+        must_be_greater_than: 1900

@@ -1,0 +1,31 @@
+dataset: pawsfirst/gold/fact_fin_invoice
+
+columns:
+  - name: invoice_id
+    data_type: integer
+    checks:
+      - missing:
+          name: invoice_id is always populated
+
+  - name: clinic_id
+    data_type: integer
+    checks:
+      - missing:
+          name: clinic_id is always populated
+
+  - name: invoice_month_start_date
+    data_type: date
+    checks:
+      - missing:
+          name: invoice_month_start_date is always populated
+
+checks:
+  - schema:
+      name: Schema matches expected structure
+      allow_extra_columns: true
+      allow_other_column_order: true
+
+  - row_count:
+      name: At least 4000 gold invoice fact rows
+      threshold:
+        must_be_greater_than: 4000

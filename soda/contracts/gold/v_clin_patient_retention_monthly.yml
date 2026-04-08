@@ -1,0 +1,31 @@
+dataset: pawsfirst/gold/v_clin_patient_retention_monthly
+
+columns:
+  - name: clinic_id
+    data_type: integer
+    checks:
+      - missing:
+          name: clinic_id is always populated
+
+  - name: cohort_month_start_date
+    data_type: date
+    checks:
+      - missing:
+          name: cohort_month_start_date is always populated
+
+  - name: cohort_size
+    data_type: bigint
+    checks:
+      - missing:
+          name: cohort_size is always populated
+
+checks:
+  - schema:
+      name: Schema matches expected structure
+      allow_extra_columns: true
+      allow_other_column_order: true
+
+  - row_count:
+      name: At least 100 retention cohort rows
+      threshold:
+        must_be_greater_than: 100

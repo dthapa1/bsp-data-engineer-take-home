@@ -1,0 +1,31 @@
+dataset: pawsfirst/gold/v_clin_duplicate_patients_exceptions
+
+columns:
+  - name: patient_id_left
+    data_type: integer
+    checks:
+      - missing:
+          name: patient_id_left is always populated
+
+  - name: patient_id_right
+    data_type: integer
+    checks:
+      - missing:
+          name: patient_id_right is always populated
+
+  - name: match_reasons
+    data_type: varchar
+    checks:
+      - missing:
+          name: match_reasons is always populated
+
+checks:
+  - schema:
+      name: Schema matches expected structure
+      allow_extra_columns: true
+      allow_other_column_order: true
+
+  - row_count:
+      name: At least 100 duplicate patient exception rows
+      threshold:
+        must_be_greater_than: 100

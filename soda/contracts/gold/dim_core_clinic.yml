@@ -1,0 +1,25 @@
+dataset: pawsfirst/gold/dim_core_clinic
+
+columns:
+  - name: clinic_id
+    data_type: integer
+    checks:
+      - missing:
+          name: clinic_id is always populated
+
+  - name: clinic_name
+    data_type: varchar
+    checks:
+      - missing:
+          name: clinic_name is always populated
+
+checks:
+  - schema:
+      name: Schema matches expected structure
+      allow_extra_columns: true
+      allow_other_column_order: true
+
+  - row_count:
+      name: At least 10 gold clinic dimension rows
+      threshold:
+        must_be_greater_than: 10

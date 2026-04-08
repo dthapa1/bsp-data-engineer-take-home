@@ -1,0 +1,25 @@
+dataset: pawsfirst/gold/v_pipe_referral_funnel_monthly
+
+columns:
+  - name: clinic_id
+    data_type: integer
+    checks:
+      - missing:
+          name: clinic_id is always populated
+
+  - name: referral_month_start_date
+    data_type: date
+    checks:
+      - missing:
+          name: referral_month_start_date is always populated
+
+checks:
+  - schema:
+      name: Schema matches expected structure
+      allow_extra_columns: true
+      allow_other_column_order: true
+
+  - row_count:
+      name: At least 100 monthly referral funnel rows
+      threshold:
+        must_be_greater_than: 100

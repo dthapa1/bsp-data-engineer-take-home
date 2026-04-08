@@ -8,6 +8,26 @@ The warehouse uses a medallion architecture (bronze → silver → gold) backed 
 
 Your stakeholders have business questions they need answered. You'll need to design and build the gold layer to serve them.
 
+## Current Working Tree Status
+
+In this completed implementation, the repo now includes:
+
+- a stabilized and expanded silver layer
+- gold foundation tables
+- analytical views for all 6 business requirements
+- silver and gold Soda contracts
+- repo-native validation scripts
+- a terminal dashboard for quick visual verification
+
+Useful local commands in this working tree:
+
+```powershell
+./.venv/Scripts/python.exe scripts/validate_final.py
+./.venv/Scripts/python.exe scripts/demo_dashboard.py
+```
+
+See [USER_README.md](USER_README.md) for the easiest walkthrough of what was built.
+
 ## Getting Started
 
 See [SETUP.md](SETUP.md) for detailed installation and setup instructions.

@@ -68,10 +68,12 @@ uv run pytest tests/ -v
 Soda contracts validate data quality. To run bronze contracts:
 
 ```bash
-uv run soda scan -d pawsfirst -c soda/configuration.yml soda/contracts/bronze/*.yml
+for contract in soda/contracts/bronze/*.yml; do
+  uv run soda contract verify -c "$contract" -ds soda/configuration.yml
+done
 ```
 
-> **Note:** You'll need to create a `soda/configuration.yml` pointing to your local DuckDB. See the [Soda DuckDB docs](https://docs.soda.io/soda/connect-duckdb.html) for configuration details. This is part of the exercise — setting up Soda configuration is expected.
+> **Note:** `soda/configuration.yml` points Soda to the local DuckDB database at `data/pawsfirst.duckdb`.
 
 ## Useful DuckDB Queries
 

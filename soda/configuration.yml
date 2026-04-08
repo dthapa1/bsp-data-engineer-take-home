@@ -1,0 +1,6 @@
+type: duckdb
+name: pawsfirst
+connection:
+  database: data/pawsfirst.duckdb
+  read_only: true
+  schema: main

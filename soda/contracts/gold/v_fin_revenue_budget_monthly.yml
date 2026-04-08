@@ -1,0 +1,31 @@
+dataset: pawsfirst/gold/v_fin_revenue_budget_monthly
+
+columns:
+  - name: clinic_id
+    data_type: integer
+    checks:
+      - missing:
+          name: clinic_id is always populated
+
+  - name: invoice_month_start_date
+    data_type: date
+    checks:
+      - missing:
+          name: invoice_month_start_date is always populated
+
+  - name: total_revenue_amount
+    data_type: double
+    checks:
+      - missing:
+          name: total_revenue_amount is always populated
+
+checks:
+  - schema:
+      name: Schema matches expected structure
+      allow_extra_columns: true
+      allow_other_column_order: true
+
+  - row_count:
+      name: At least 100 monthly revenue rows
+      threshold:
+        must_be_greater_than: 100

@@ -1,0 +1,37 @@
+dataset: pawsfirst/gold/fact_pipe_referral_stage
+
+columns:
+  - name: referral_id
+    data_type: integer
+    checks:
+      - missing:
+          name: referral_id is always populated
+
+  - name: clinic_id
+    data_type: integer
+    checks:
+      - missing:
+          name: clinic_id is always populated
+
+  - name: referral_stage
+    data_type: varchar
+    checks:
+      - missing:
+          name: referral_stage is always populated
+
+  - name: referral_stage_rank
+    data_type: integer
+    checks:
+      - missing:
+          name: referral_stage_rank is always populated
+
+checks:
+  - schema:
+      name: Schema matches expected structure
+      allow_extra_columns: true
+      allow_other_column_order: true
+
+  - row_count:
+      name: At least 2000 gold referral stage fact rows
+      threshold:
+        must_be_greater_than: 2000

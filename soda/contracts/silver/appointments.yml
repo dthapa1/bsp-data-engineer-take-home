@@ -1,4 +1,4 @@
-dataset: pawsfirst/bronze/vet_appointment
+dataset: pawsfirst/silver/stg_vet_appointment
 
 columns:
   - name: appointment_id
@@ -7,23 +7,17 @@ columns:
       - missing:
           name: appointment_id is always populated
 
-  - name: patient_id
-    data_type: integer
-    checks:
-      - missing:
-          name: patient_id is always populated
-
   - name: clinic_id
     data_type: integer
     checks:
       - missing:
           name: clinic_id is always populated
 
-  - name: appointment_date
+  - name: appointment_week_start
     data_type: date
     checks:
       - missing:
-          name: appointment_date is always populated
+          name: appointment_week_start is always populated
 
   - name: status
     data_type: varchar
@@ -38,6 +32,6 @@ checks:
       allow_other_column_order: true
 
   - row_count:
-      name: At least 5000 appointment records
+      name: At least 6000 silver appointment records
       threshold:
-        must_be_greater_than: 5000
+        must_be_greater_than: 6000

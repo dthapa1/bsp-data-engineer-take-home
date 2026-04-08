@@ -1,4 +1,4 @@
-dataset: pawsfirst/bronze/vet_provider
+dataset: pawsfirst/silver/stg_vet_provider
 
 columns:
   - name: provider_id
@@ -7,11 +7,11 @@ columns:
       - missing:
           name: provider_id is always populated
 
-  - name: full_name
+  - name: provider_clinic_id
     data_type: varchar
     checks:
       - missing:
-          name: full_name is always populated
+          name: provider_clinic_id is always populated
 
   - name: clinic_id
     data_type: integer
@@ -26,6 +26,6 @@ checks:
       allow_other_column_order: true
 
   - row_count:
-      name: At least 30 provider records
+      name: At least 30 silver provider records
       threshold:
         must_be_greater_than: 30

@@ -1,4 +1,4 @@
-dataset: pawsfirst/bronze/vet_clinic
+dataset: pawsfirst/silver/stg_vet_clinic
 
 columns:
   - name: clinic_id
@@ -13,17 +13,11 @@ columns:
       - missing:
           name: clinic_name is always populated
 
-  - name: opened_date
-    data_type: date
+  - name: reporting_clinic_id
+    data_type: integer
     checks:
       - missing:
-          name: opened_date is always populated
-
-  - name: area
-    data_type: varchar
-    checks:
-      - missing:
-          name: area is always populated
+          name: reporting_clinic_id is always populated
 
 checks:
   - schema:
@@ -32,6 +26,6 @@ checks:
       allow_other_column_order: true
 
   - row_count:
-      name: At least 10 clinic records
+      name: At least 10 silver clinic records
       threshold:
         must_be_greater_than: 10

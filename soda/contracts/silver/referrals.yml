@@ -1,4 +1,4 @@
-dataset: pawsfirst/bronze/vet_referral
+dataset: pawsfirst/silver/stg_vet_referral
 
 columns:
   - name: referral_id
@@ -7,11 +7,11 @@ columns:
       - missing:
           name: referral_id is always populated
 
-  - name: patient_id
+  - name: clinic_id
     data_type: integer
     checks:
       - missing:
-          name: patient_id is always populated
+          name: clinic_id is always populated
 
   - name: stage
     data_type: varchar
@@ -19,11 +19,11 @@ columns:
       - missing:
           name: stage is always populated
 
-  - name: stage_entered_at
-    data_type: timestamp
+  - name: stage_rank
+    data_type: integer
     checks:
       - missing:
-          name: stage_entered_at is always populated
+          name: stage_rank is always populated
 
 checks:
   - schema:
@@ -32,6 +32,6 @@ checks:
       allow_other_column_order: true
 
   - row_count:
-      name: At least 500 referral stage records
+      name: At least 2000 silver referral stage records
       threshold:
-        must_be_greater_than: 500
+        must_be_greater_than: 2000

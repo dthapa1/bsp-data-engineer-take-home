@@ -1,4 +1,4 @@
-dataset: pawsfirst/bronze/vet_budget_target
+dataset: pawsfirst/silver/stg_vet_budget_target
 
 columns:
   - name: clinic_id
@@ -7,17 +7,11 @@ columns:
       - missing:
           name: clinic_id is always populated
 
-  - name: year
-    data_type: integer
+  - name: budget_month_start
+    data_type: date
     checks:
       - missing:
-          name: year is always populated
-
-  - name: month
-    data_type: integer
-    checks:
-      - missing:
-          name: month is always populated
+          name: budget_month_start is always populated
 
   - name: target_revenue
     data_type: double
@@ -32,6 +26,6 @@ checks:
       allow_other_column_order: true
 
   - row_count:
-      name: At least 100 budget target records
+      name: At least 100 silver budget target records
       threshold:
         must_be_greater_than: 100

@@ -1,4 +1,4 @@
-dataset: pawsfirst/bronze/vet_invoice
+dataset: pawsfirst/silver/stg_vet_invoice
 
 columns:
   - name: invoice_id
@@ -7,23 +7,23 @@ columns:
       - missing:
           name: invoice_id is always populated
 
-  - name: appointment_id
+  - name: clinic_id
     data_type: integer
     checks:
       - missing:
-          name: appointment_id is always populated
+          name: clinic_id is always populated
+
+  - name: invoice_month_start
+    data_type: date
+    checks:
+      - missing:
+          name: invoice_month_start is always populated
 
   - name: amount
     data_type: double
     checks:
       - missing:
           name: amount is always populated
-
-  - name: invoice_date
-    data_type: date
-    checks:
-      - missing:
-          name: invoice_date is always populated
 
 checks:
   - schema:
@@ -32,6 +32,6 @@ checks:
       allow_other_column_order: true
 
   - row_count:
-      name: At least 4000 invoice records
+      name: At least 4000 silver invoice records
       threshold:
         must_be_greater_than: 4000

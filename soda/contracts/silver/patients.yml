@@ -1,23 +1,23 @@
-dataset: pawsfirst/bronze/vet_provider
+dataset: pawsfirst/silver/stg_vet_patient
 
 columns:
-  - name: provider_id
+  - name: patient_id
     data_type: integer
     checks:
       - missing:
-          name: provider_id is always populated
-
-  - name: full_name
-    data_type: varchar
-    checks:
-      - missing:
-          name: full_name is always populated
+          name: patient_id is always populated
 
   - name: clinic_id
     data_type: integer
     checks:
       - missing:
           name: clinic_id is always populated
+
+  - name: registration_date
+    data_type: date
+    checks:
+      - missing:
+          name: registration_date is always populated
 
 checks:
   - schema:
@@ -26,6 +26,6 @@ checks:
       allow_other_column_order: true
 
   - row_count:
-      name: At least 30 provider records
+      name: At least 1900 silver patient records
       threshold:
-        must_be_greater_than: 30
+        must_be_greater_than: 1900

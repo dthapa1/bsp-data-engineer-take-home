@@ -1,10 +1,10 @@
 """
-Iteration 4 validation script.
+Soda Contracts validation script.
 
-Builds the warehouse objects and verifies the silver/gold Soda contracts.
+Verifies data contracts for silver staging views and gold warehouse objects.
 
 Usage:
-    ./.venv/Scripts/python.exe scripts/validate_iteration_4.py
+    ./.venv/bin/python scripts/validate_soda_contracts.py
 """
 
 from __future__ import annotations
@@ -101,7 +101,7 @@ def verify_contract(contract_path: Path) -> ContractResult:
 
 
 def main() -> int:
-    print("Iteration 4 validation")
+    print("Soda Contracts validation")
     print("Applying migrations:")
     for migration_path in MIGRATION_PATHS:
         print(f"  - {migration_path}")

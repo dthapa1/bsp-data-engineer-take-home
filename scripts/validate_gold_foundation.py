@@ -1,10 +1,10 @@
 """
-Iteration 2 validation script.
+Gold Foundation validation script.
 
-Builds the gold foundation and validates the shared dimensions and facts.
+Builds the gold layer dimensions, facts, and references, validating structural integrity.
 
 Usage:
-    ./.venv/Scripts/python.exe scripts/validate_iteration_2.py
+    ./.venv/bin/python scripts/validate_gold_foundation.py
 """
 
 from __future__ import annotations
@@ -138,7 +138,7 @@ def run_checks() -> list[CheckResult]:
 
 
 def main() -> int:
-    print("Iteration 2 validation")
+    print("Gold Foundation validation")
     print(f"Applying migration: {SILVER_MIGRATION_PATH}")
     print(f"Applying migration: {GOLD_MIGRATION_PATH}")
     rebuild_gold_foundation()

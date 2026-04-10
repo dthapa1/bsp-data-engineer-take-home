@@ -1,10 +1,10 @@
 """
-Iteration 1 validation script.
+Silver Layer validation script.
 
-Rebuilds the silver layer and validates the silver stabilization work.
+Rebuilds the silver staging views and validates data quality and structure.
 
 Usage:
-    ./.venv/Scripts/python.exe scripts/validate_iteration_1.py
+    ./.venv/bin/python scripts/validate_silver.py
 """
 
 from __future__ import annotations
@@ -151,7 +151,7 @@ def run_checks() -> list[CheckResult]:
 
 
 def main() -> int:
-    print("Iteration 1 validation")
+    print("Silver Layer validation")
     print(f"Applying migration: {MIGRATION_PATH}")
     rebuild_silver()
     print("Silver migration applied")

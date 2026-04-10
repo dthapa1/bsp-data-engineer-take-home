@@ -19,7 +19,6 @@ from flows.common import ensure_schemas, get_connection, run_migration
 MIGRATION_PATHS = [
     Path(__file__).parent.parent / "sql" / "migrations" / "0003_create_gold_foundation.sql",
     Path(__file__).parent.parent / "sql" / "migrations" / "0004_create_gold_requirement_views.sql",
-    Path(__file__).parent.parent / "sql" / "migrations" / "0005_create_gold_expansion_views.sql",
 ]
 
 

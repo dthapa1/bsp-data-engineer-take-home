@@ -26,7 +26,7 @@ Useful local commands in this working tree:
 ./.venv/Scripts/python.exe scripts/demo_dashboard.py
 ```
 
-See [USER_README.md](USER_README.md) for the easiest walkthrough of what was built.
+See [docs/submission_notes.md](docs/submission_notes.md) for the detailed walkthrough of what was built and why.
 
 ## Getting Started
 

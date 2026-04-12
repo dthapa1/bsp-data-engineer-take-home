@@ -41,7 +41,7 @@ Important paths:
 - `flows/gold_transform.py`: gold build flow
 - `sql/migrations/`: warehouse DDL and load logic
 - `soda/contracts/`: data contracts
-- `scripts/validate_iteration_*.py`: repo-native validation scripts
+- `scripts/validate_*.py`: repo-native validation scripts
 - `scripts/demo_dashboard.py`: terminal-friendly warehouse walkthrough
 - `plans/`: implementation progress and testing notes
 
@@ -67,18 +67,16 @@ Important paths:
 
 ## Validation Workflow
 
-Prefer the iteration validators over ad hoc shell one-liners.
+Prefer the repo-native validators over ad hoc shell one-liners.
 
-PowerShell-friendly commands:
+macOS/Linux commands:
 
-```powershell
-./.venv/Scripts/python.exe scripts/validate_iteration_1.py
-./.venv/Scripts/python.exe scripts/validate_iteration_2.py
-./.venv/Scripts/python.exe scripts/validate_iteration_3.py
-./.venv/Scripts/python.exe scripts/validate_iteration_4.py
-./.venv/Scripts/python.exe scripts/validate_iteration_6.py
-./.venv/Scripts/python.exe scripts/validate_final.py
-./.venv/Scripts/python.exe scripts/demo_dashboard.py
+```bash
+./.venv/bin/python scripts/validate_silver.py
+./.venv/bin/python scripts/validate_gold_foundation.py
+./.venv/bin/python scripts/validate_requirements.py
+./.venv/bin/python scripts/validate_final.py
+./.venv/bin/python scripts/demo_dashboard.py
 ```
 
 Recommended usage:
@@ -101,7 +99,7 @@ When making additional changes:
 2. add or update a validator script if testing changes materially
 3. update `plans/iteration_log.md`
 4. keep `plans/README.md`, `plans/todo.md`, and `plans/effort_map.md` readable and current
-5. update `USER_README.md` and `docs/submission_notes.md` if the testing story or deliverables change
+5. update `docs/submission_notes.md` if the testing story or deliverables change
 
 ## Suggested Next Enhancements
 

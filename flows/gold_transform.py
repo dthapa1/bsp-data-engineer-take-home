@@ -18,7 +18,12 @@ from flows.common import ensure_schemas, get_connection, run_migration
 
 MIGRATION_PATHS = [
     Path(__file__).parent.parent / "sql" / "migrations" / "0003_create_gold_foundation.sql",
-    Path(__file__).parent.parent / "sql" / "migrations" / "0004_create_gold_requirement_views.sql",
+    Path(__file__).parent.parent / "sql" / "migrations" / "0004_gold_requirement_1_clinic_appointment.sql",
+    Path(__file__).parent.parent / "sql" / "migrations" / "0005_gold_requirement_2_referral_funnel.sql",
+    Path(__file__).parent.parent / "sql" / "migrations" / "0006_gold_requirement_3_revenue_budget.sql",
+    Path(__file__).parent.parent / "sql" / "migrations" / "0007_gold_requirement_4_provider_utilization.sql",
+    Path(__file__).parent.parent / "sql" / "migrations" / "0008_gold_requirement_5_duplicate_patients.sql",
+    Path(__file__).parent.parent / "sql" / "migrations" / "0009_gold_requirement_6_patient_retention.sql",
 ]
 
 

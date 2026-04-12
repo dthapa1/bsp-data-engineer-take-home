@@ -29,7 +29,12 @@ from flows.common import ensure_schemas, get_connection, run_migration
 MIGRATION_PATHS = [
     REPO_ROOT / "sql" / "migrations" / "0002_create_silver_views.sql",
     REPO_ROOT / "sql" / "migrations" / "0003_create_gold_foundation.sql",
-    REPO_ROOT / "sql" / "migrations" / "0004_create_gold_requirement_views.sql",
+    REPO_ROOT / "sql" / "migrations" / "0004_gold_requirement_1_clinic_appointment.sql",
+    REPO_ROOT / "sql" / "migrations" / "0005_gold_requirement_2_referral_funnel.sql",
+    REPO_ROOT / "sql" / "migrations" / "0006_gold_requirement_3_revenue_budget.sql",
+    REPO_ROOT / "sql" / "migrations" / "0007_gold_requirement_4_provider_utilization.sql",
+    REPO_ROOT / "sql" / "migrations" / "0008_gold_requirement_5_duplicate_patients.sql",
+    REPO_ROOT / "sql" / "migrations" / "0009_gold_requirement_6_patient_retention.sql",
 ]
 
 

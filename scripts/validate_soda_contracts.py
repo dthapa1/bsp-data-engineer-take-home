@@ -11,6 +11,8 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from pathlib import Path
+import platform
+import shutil
 import subprocess
 import sys
 
@@ -23,7 +25,12 @@ from flows.common import ensure_schemas, get_connection, run_migration
 MIGRATION_PATHS = [
     REPO_ROOT / "sql" / "migrations" / "0002_create_silver_views.sql",
     REPO_ROOT / "sql" / "migrations" / "0003_create_gold_foundation.sql",
-    REPO_ROOT / "sql" / "migrations" / "0004_create_gold_requirement_views.sql",
+    REPO_ROOT / "sql" / "migrations" / "0004_gold_requirement_1_clinic_appointment.sql",
+    REPO_ROOT / "sql" / "migrations" / "0005_gold_requirement_2_referral_funnel.sql",
+    REPO_ROOT / "sql" / "migrations" / "0006_gold_requirement_3_revenue_budget.sql",
+    REPO_ROOT / "sql" / "migrations" / "0007_gold_requirement_4_provider_utilization.sql",
+    REPO_ROOT / "sql" / "migrations" / "0008_gold_requirement_5_duplicate_patients.sql",
+    REPO_ROOT / "sql" / "migrations" / "0009_gold_requirement_6_patient_retention.sql",
 ]
 CONTRACT_PATHS = [
     REPO_ROOT / "soda" / "contracts" / "silver" / "clinics.yml",
@@ -46,7 +53,10 @@ CONTRACT_PATHS = [
     REPO_ROOT / "soda" / "contracts" / "gold" / "v_clin_duplicate_patients_exceptions.yml",
     REPO_ROOT / "soda" / "contracts" / "gold" / "v_clin_patient_retention_monthly.yml",
 ]
-SODA_EXE = REPO_ROOT / ".venv" / "Scripts" / "soda.exe"
+if platform.system() == "Windows":
+    SODA_EXE = REPO_ROOT / ".venv" / "Scripts" / "soda.exe"
+else:
+    SODA_EXE = REPO_ROOT / ".venv" / "bin" / "soda"
 CONFIG_PATH = REPO_ROOT / "soda" / "configuration.yml"
 
 
@@ -69,9 +79,13 @@ def rebuild_objects() -> None:
 
 
 def _run_contract_process(contract_path: Path) -> subprocess.CompletedProcess:
+    soda_executable = str(SODA_EXE)
+    if not SODA_EXE.exists():
+        soda_executable = shutil.which("soda") or soda_executable
+
     return subprocess.run(
         [
-            str(SODA_EXE),
+            soda_executable,
             "contract",
             "verify",
             "-c",

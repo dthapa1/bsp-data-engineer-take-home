@@ -1,10 +1,10 @@
 """
 Final validation script.
 
-Runs the iteration validators in sequence and prints a compact summary.
+Runs all validators in sequence and prints a compact summary.
 
 Usage:
-    ./.venv/Scripts/python.exe scripts/validate_final.py
+    ./.venv/bin/python scripts/validate_final.py
 """
 
 from __future__ import annotations
@@ -14,15 +14,19 @@ from pathlib import Path
 import subprocess
 import sys
 import time
+import platform
 
 REPO_ROOT = Path(__file__).parent.parent
-PYTHON_EXE = REPO_ROOT / ".venv" / "Scripts" / "python.exe"
+
+# Use correct python executable path based on platform
+if platform.system() == "Windows":
+    PYTHON_EXE = REPO_ROOT / ".venv" / "Scripts" / "python.exe"
+else:
+    PYTHON_EXE = REPO_ROOT / ".venv" / "bin" / "python"
 VALIDATORS = [
-    REPO_ROOT / "scripts" / "validate_iteration_1.py",
-    REPO_ROOT / "scripts" / "validate_iteration_2.py",
-    REPO_ROOT / "scripts" / "validate_iteration_3.py",
-    REPO_ROOT / "scripts" / "validate_iteration_4.py",
-    REPO_ROOT / "scripts" / "validate_iteration_6.py",
+    REPO_ROOT / "scripts" / "validate_silver.py",
+    REPO_ROOT / "scripts" / "validate_gold_foundation.py",
+    REPO_ROOT / "scripts" / "validate_requirements.py",
 ]
 MAX_ATTEMPTS = 2
 
@@ -72,7 +76,7 @@ def run_validator(validator_path: Path) -> ValidationResult:
 
 def main() -> int:
     print("Final validation")
-    print("Running iteration validators:")
+    print("Running validators:")
     for validator in VALIDATORS:
         print(f"  - {validator.name}")
     print()

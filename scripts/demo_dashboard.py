@@ -113,7 +113,7 @@ def main() -> int:
             """
             SELECT
                 clinic_name,
-                clinic_region,
+                clinic_area,
                 appointment_week_start_date,
                 total_appointments,
                 ROUND(completion_rate, 3) AS completion_rate,

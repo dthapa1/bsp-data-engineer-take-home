@@ -33,6 +33,31 @@ def ensure_schemas(con: duckdb.DuckDBPyConnection) -> None:
 def run_migration(con: duckdb.DuckDBPyConnection, migration_path: str) -> None:
     """Execute a SQL migration file."""
     sql = Path(migration_path).read_text()
+    
+    # Remove line comments (-- ...) to avoid semicolons in comments breaking parsing
+    lines = []
+    for line in sql.split("\n"):
+        # Find the position of -- comment marker (not in strings)
+        in_string = False
+        quote_char = None
+        comment_pos = -1
+        for i, char in enumerate(line):
+            if char in ("'", '"') and (i == 0 or line[i-1] != "\\"):
+                if not in_string:
+                    in_string = True
+                    quote_char = char
+                elif char == quote_char:
+                    in_string = False
+            elif not in_string and i < len(line) - 1 and char == "-" and line[i+1] == "-":
+                comment_pos = i
+                break
+        if comment_pos >= 0:
+            lines.append(line[:comment_pos])
+        else:
+            lines.append(line)
+    
+    sql = "\n".join(lines)
+    
     phases = sql.split("-- PHASE_BREAK")
     for phase in phases:
         phase = phase.strip()
